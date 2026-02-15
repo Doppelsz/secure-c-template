@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-
-// rough example.
-// explict prototypes, assertions, no globals, return checks.
+#include <stdint.h>
 
 static int run(void);
 static int safe_print(const char *message);
@@ -20,7 +18,7 @@ int main(void)
 static int run(void)
 {
     int status = EXIT_FAILURE;
-    const char *msg = "Rough Example Running! \n";
+    const char *msg = "Example Running!\n";
 
     assert(msg != NULL);
 
@@ -38,7 +36,8 @@ static int safe_print(const char *message)
 
     assert(message != NULL);
 
-    if (printf("%s", message) >= 0)
+    int rc = printf("%s", message);
+    if (rc >= 0)
     {
         result = EXIT_SUCCESS;
     }
